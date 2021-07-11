@@ -1,0 +1,12 @@
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8.2
+  - pip
+  - pip:
+      - pandas
+      - sklearn
+      - mlflow
+      - cloudpickle==1.6.0
+      - boto3
+name: mlflow-env

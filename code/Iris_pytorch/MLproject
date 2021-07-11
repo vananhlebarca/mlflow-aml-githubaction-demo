@@ -1,0 +1,7 @@
+name: iris-classification-demo
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    command: "python iris_rf.py" 
