@@ -77,8 +77,8 @@ print(exp.name, exp.workspace.name, sep="\n")
 '''
 # Use MLflow to build a Container Image for the trained model
 
-# Use the `mlflow.azuereml.build_image` function to build an Azure Container Image for the trained MLflow model. 
-# This function also registers the MLflow model with a specified Azure ML workspace. 
+# Use the `mlflow.azuereml.build_image` function to build an Azure Container Image for the trained MLflow model.
+# This function also registers the MLflow model with a specified Azure ML workspace.
 # The resulting image can be deployed to Azure Container Instances (ACI) or Azure Kubernetes Service (AKS) for real-time serving.
 
 
@@ -94,7 +94,7 @@ model_image.wait_for_creation(show_output=True)
 
 # Create an ACI webservice deployment
 
-# The [ACI platform](https://docs.microsoft.com/en-us/azure/container-instances/) is the recommended environment for staging and developmental model deployments. 
+# The [ACI platform](https://docs.microsoft.com/en-us/azure/container-instances/) is the recommended environment for staging and developmental model deployments.
 # Using the Azure ML SDK, deploy the Container Image for the trained MLflow model to ACI.
 
 
@@ -129,13 +129,13 @@ print("Deploying model on ACI")
 aci_config = AciWebservice.deploy_configuration(cpu_cores=2,
                                                 memory_gb=5)
 # Deploying dev web service from image
-# dev_service = mlflow.azureml.deploy(model_uri='models:/{}/{}'.format(deployment_settings["model"]["name"], model.version),
-#                                     workspace=ws,
-#                                     deployment_config=aci_config,
-#                                     service_name="ACI-deploy")
-
-
-dev_service = mlflow.azureml.deploy(model_uri='runs:/{}/{}'.format(run_details["run_id"], deployment_settings["model"]["path"]),
+dev_service = mlflow.azureml.deploy(model_uri='models:/{}/{}'.format(deployment_settings["model"]["name"], model.version),
                                     workspace=ws,
                                     deployment_config=aci_config,
-                                    service_name="iris-aci")
+                                    service_name="aci-iris")
+
+
+# dev_service = mlflow.azureml.deploy(model_uri='runs:/{}/{}'.format(run_details["run_id"], deployment_settings["model"]["path"]),
+                                    workspace = ws,
+                                    deployment_config = aci_config,
+                                    service_name = "iris-aci")
