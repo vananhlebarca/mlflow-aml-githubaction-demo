@@ -32,6 +32,7 @@ from azureml.core.model import Model
 from azureml.core.authentication import AzureCliAuthentication
 from azureml.core.webservice import AciWebservice, Webservice
 import mlflow
+import mlflow.azureml
 
 # Load the JSON settings file and relevant section
 print("Loading settings")
