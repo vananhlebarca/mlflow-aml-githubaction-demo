@@ -1,15 +1,17 @@
 
 
 from azureml.core.webservice import AciWebservice, Webservice
-import os, sys, json
+import os
+import sys
+import json
 from azureml.core import Workspace, Image
 from azureml.core.webservice import Webservice, AciWebservice
-from azureml.exceptions import WebserviceException 
+from azureml.exceptions import WebserviceException
 from azureml.core.authentication import AzureCliAuthentication
 import mlflow
 import mlflow.azureml
 
-#----
+# ----
 # sys.path.insert(0, os.path.join("code", "testing"))
 # import test_functions
 
@@ -35,17 +37,16 @@ ws = Workspace.from_config(
     path=config_file_path,
     auth=cli_auth,
     _file_name=config_file_name)
-print(ws.name, ws.resource_group, ws.location, ws.subscription_id, sep = '\n')
+print(ws.name, ws.resource_group, ws.location, ws.subscription_id, sep='\n')
 
 
 # Deploying model on ACI
 print("Deploying model on ACI")
 aci_config = AciWebservice.deploy_configuration(cpu_cores=2,
                                                 memory_gb=5)
-    # Deploying dev web service from image
+# Deploying dev web service from image
 dev_service = mlflow.azureml.deploy(model_uri='runs:/{}/{}'.format(run_details["run_id"], deployment_settings["model"]["path"]),
-                                            workspace=ws,
-                                            deployment_config=aci_config,
-                                            service_name="ACI-deploy",
-                                            model_name=deployment_settings["model"]["name"])
-        
+                                    workspace=ws,
+                                    deployment_config=aci_config,
+                                    service_name="ACI-deploy")
+#                                          model_name=deployment_settings["model"]["name"])
