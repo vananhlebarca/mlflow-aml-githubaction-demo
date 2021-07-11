@@ -23,10 +23,15 @@ IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THE SOFTWARE CODE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 """
-import os, json, sys, azureml.core
+import os
+import json
+import sys
+import azureml.core
 from azureml.core import Workspace, Experiment, Run
 from azureml.core.model import Model
 from azureml.core.authentication import AzureCliAuthentication
+from azureml.core.webservice import AciWebservice, Webservice
+import mlflow
 
 # Load the JSON settings file and relevant section
 print("Loading settings")
@@ -48,7 +53,7 @@ ws = Workspace.from_config(
     path=config_file_path,
     auth=cli_auth,
     _file_name=config_file_name)
-print(ws.name, ws.resource_group, ws.location, ws.subscription_id, sep = '\n')
+print(ws.name, ws.resource_group, ws.location, ws.subscription_id, sep='\n')
 
 # Loading Run
 print("Loading Run")
@@ -59,7 +64,18 @@ run = Run(experiment=experiment, run_id=run_details["run_id"])
 tags = deployment_settings["model"]["tags"]
 
 model = run.register_model(model_name=deployment_settings["model"]["name"],
-                               model_path=deployment_settings["model"]["path"],
-                               tags=tags,
-                               description=deployment_settings["model"]["description"],
-                               )
+                           model_path=deployment_settings["model"]["path"],
+                           tags=tags,
+                           description=deployment_settings["model"]["description"],
+                           )
+
+
+# Deploying model on ACI
+print("Deploying model on ACI")
+aci_config = AciWebservice.deploy_configuration(cpu_cores=2,
+                                                memory_gb=5)
+# Deploying dev web service from image
+dev_service = mlflow.azureml.deploy(model_uri='models:/{}/{}'.format(deployment_settings["model"]["name"], model.version),
+                                    workspace=ws,
+                                    deployment_config=aci_config,
+                                    service_name="ACI-deploy")

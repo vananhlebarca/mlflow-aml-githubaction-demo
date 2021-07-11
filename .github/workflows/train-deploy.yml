@@ -51,7 +51,6 @@ jobs:
       - name: Register model
         run: |
           python 'code/Iris_pytorch/register_model.py'
-
-      - name: Deploy model
-        run: |
-          python 'code/Iris_pytorch/deploy_model.py'
+      # - name: Deploy model
+      #   run: |
+      #     python 'code/Iris_pytorch/deploy_model.py'
