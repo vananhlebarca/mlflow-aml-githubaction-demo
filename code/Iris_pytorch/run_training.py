@@ -64,7 +64,7 @@ mlflow.set_experiment(exp.name)
 print(exp.name, exp.workspace.name, sep="\n")
 
 # Submit Project
-remote_mlflow_run = mlflow.projects.run(uri="https://github.com/vananhlebarca/mlflow-aml-githubaction-demo#code/Iris_pytorch",
+remote_mlflow_run = mlflow.projects.run(uri="./code/Iris_pytorch",
                                         backend="azureml",
                                         backend_config={
                                             "COMPUTE": "amlcluster", "USE_CONDA": True},
