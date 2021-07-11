@@ -1,0 +1,4 @@
+artifact_location: file:///C:/Users/anle/Desktop/github/mlflow_aml_githubaction_test/code/Iris_pytorch/mlruns/0
+experiment_id: '0'
+lifecycle_stage: active
+name: Default

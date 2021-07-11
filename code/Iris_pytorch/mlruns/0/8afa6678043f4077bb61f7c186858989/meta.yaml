@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/anle/Desktop/github/mlflow_aml_githubaction_test/code/Iris_pytorch/mlruns/0/8afa6678043f4077bb61f7c186858989/artifacts
+end_time: 1625980550520
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 8afa6678043f4077bb61f7c186858989
+run_uuid: 8afa6678043f4077bb61f7c186858989
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1625980282286
+status: 4
+tags: []
+user_id: anle

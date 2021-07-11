@@ -1,0 +1,4 @@
+{
+    "COMPUTE": "gpu-cluster-1",
+    "USE_CONDA": "True"
+}
