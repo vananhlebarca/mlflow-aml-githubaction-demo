@@ -90,5 +90,3 @@ with mlflow.start_run():
     mlflow.sklearn.log_model(model, 'model_rf')
     model_path = mlflow.get_artifact_uri('model_rf')
     print(model_path)
-
-    print('llldslldsgdlfgl')
