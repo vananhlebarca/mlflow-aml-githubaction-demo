@@ -23,10 +23,13 @@ IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THE SOFTWARE CODE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 """
-import os, json, azureml.core
+import os
+import json
+import azureml.core
 from azureml.core import Workspace, Experiment, ContainerRegistry, Environment, Model
 from azureml.core.authentication import AzureCliAuthentication
-import sys, os
+import sys
+import os
 import mlflow
 import mlflow.azureml
 
@@ -35,7 +38,7 @@ print("Loading settings")
 with open(os.path.join("code", "settings.json")) as f:
     settings = json.load(f)
 experiment_settings = settings["experiment"]
-deployment_settings = settings["deployment"] 
+deployment_settings = settings["deployment"]
 
 
 # Get workspace
@@ -47,9 +50,9 @@ ws = Workspace.from_config(
     path=config_file_path,
     auth=cli_auth,
     _file_name=config_file_name)
-print(ws.name, ws.resource_group, ws.location, sep = '\n')
+print(ws.name, ws.resource_group, ws.location, sep='\n')
 
-# Set mlflow tracking 
+# Set mlflow tracking
 # mlflow.set_tracking_uri(ws.get_mlflow_tracking_uri())
 
 os.environ["MLFLOW_TRACKING_URI"] = ws.get_mlflow_tracking_uri()
@@ -61,11 +64,12 @@ mlflow.set_experiment(exp.name)
 print(exp.name, exp.workspace.name, sep="\n")
 
 # Submit Project
-remote_mlflow_run = mlflow.projects.run(uri="https://github.com/shivp950/AzureML_MLflow_demo#code/Iris_pytorch", 
-                                    #parameters={"epochs":10},
-                                    backend = "azureml",
-                                    backend_config = {"COMPUTE": "amlcluster", "USE_CONDA": True},
-                                    synchronous=True)
+remote_mlflow_run = mlflow.projects.run(uri="https://github.com/vananhlebarca/mlflow-aml-githubaction-demo#code/Iris_pytorch",
+                                        # parameters={"epochs":10},
+                                        backend="azureml",
+                                        backend_config={
+                                            "COMPUTE": "amlcluster", "USE_CONDA": True},
+                                        synchronous=True)
 
 # Save run details
 run_details = {}
@@ -74,4 +78,4 @@ run_details["experiment_name"] = exp.name
 with open(os.path.join("code", "run_details.json"), "w") as outfile:
     json.dump(run_details, outfile)
 
-#---------------
+# ---------------
