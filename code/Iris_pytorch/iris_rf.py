@@ -87,6 +87,6 @@ with mlflow.start_run():
     mlflow.log_metrics(metrics_dict)
 
     # log model
-    mlflow.sklearn.log_model(model, 'model_rf')
-    model_path = mlflow.get_artifact_uri('model_rf')
+    mlflow.sklearn.log_model(model, 'model')
+    model_path = mlflow.get_artifact_uri('model')
     print(model_path)
