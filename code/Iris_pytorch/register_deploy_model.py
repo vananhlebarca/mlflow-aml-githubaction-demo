@@ -136,6 +136,6 @@ dev_service = mlflow.azureml.deploy(model_uri='models:/{}/{}'.format(deployment_
 
 
 # dev_service = mlflow.azureml.deploy(model_uri='runs:/{}/{}'.format(run_details["run_id"], deployment_settings["model"]["path"]),
-                                    workspace = ws,
-                                    deployment_config = aci_config,
-                                    service_name = "iris-aci")
+# workspace = ws,
+# deployment_config = aci_config,
+# service_name = "iris-aci")
