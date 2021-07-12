@@ -57,7 +57,7 @@ ws = Workspace.from_config(
 print(ws.name, ws.resource_group, ws.location, ws.subscription_id, sep='\n')
 
 
-# -----------mlflow----------------------------------
+# -----------mlflow server--------------------------------------------------
 # Load the JSON settings file and relevant section
 print("Loading settings")
 with open(os.path.join("code", "settings.json")) as f:
