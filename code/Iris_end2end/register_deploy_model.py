@@ -95,7 +95,12 @@ print("Deploying model on ACI")
 aci_config = AciWebservice.deploy_configuration(cpu_cores=2,
                                                 memory_gb=5)
 
-dev_service = mlflow.azureml.deploy(model_uri='runs:/{}/{}'.format(run_details["run_id"], deployment_settings["model"]["path"]),
+# dev_service = mlflow.azureml.deploy(model_uri='runs:/{}/{}'.format(run_details["run_id"], deployment_settings["model"]["path"]),
+#                                     workspace=ws,
+#                                     deployment_config=aci_config,
+#                                     service_name="iris-aci")
+
+dev_service = mlflow.azureml.deploy(model_uri='models:/{}/{}'.format(deployment_settings["model"]["name"], model.version),
                                     workspace=ws,
                                     deployment_config=aci_config,
                                     service_name="iris-aci")

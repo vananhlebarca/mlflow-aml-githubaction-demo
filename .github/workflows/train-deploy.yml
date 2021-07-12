@@ -49,14 +49,13 @@ jobs:
           python 'code/Iris_end2end/run_training.py'
 
       #--------------option 1------------------------------
-      # - name: Register - deploy model
-      #   run: |
-      #     python 'code/Iris_end2end/register_deploy_model.py'
-
-      # #---------------option 2-------------------------------
       - name: Register - deploy model
         run: |
-          python 'code/Iris_end2end/register_deploy_model_alternative.py'
+          python 'code/Iris_end2end/register_deploy_model.py'
+      # #---------------option 2-------------------------------
+      # - name: Register - deploy model
+      #   run: |
+      #     python 'code/Iris_end2end/register_deploy_model_alternative.py'
       #-----------------option 3---------------------------------
       # - name: Register  model
       #   run: |
