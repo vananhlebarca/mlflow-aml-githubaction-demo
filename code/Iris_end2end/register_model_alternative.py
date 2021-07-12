@@ -87,15 +87,3 @@ model_image, azure_model = mlflow.azureml.build_image(model_uri='runs:/{}/{}'.fo
                                                       description="Sklearn image for predicting iris type",
                                                       synchronous=False)
 model_image.wait_for_creation(show_output=True)
-
-
-# ------------------------ Create an ACI webservice deployment from image---------------------
-# The [ACI platform](https://docs.microsoft.com/en-us/azure/container-instances/) is the recommended environment for staging and developmental model deployments.
-# Using the Azure ML SDK, deploy the Container Image for the trained MLflow model to ACI.
-
-
-dev_webservice_name = "iris-model"
-dev_webservice_deployment_config = AciWebservice.deploy_configuration()
-dev_webservice = Webservice.deploy_from_image(
-    name=dev_webservice_name, image=model_image, deployment_config=dev_webservice_deployment_config, workspace=ws)
-dev_webservice.wait_for_deployment()

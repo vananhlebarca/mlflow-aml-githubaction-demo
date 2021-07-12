@@ -90,7 +90,7 @@ model = run.register_model(model_name=deployment_settings["model"]["name"],
                            )
 
 
-# ----------- Deploying model on ACI------------------------
+# ----------- Deploying model on ACI directly from run -> register model again-----------------------
 print("Deploying model on ACI")
 aci_config = AciWebservice.deploy_configuration(cpu_cores=2,
                                                 memory_gb=5)
