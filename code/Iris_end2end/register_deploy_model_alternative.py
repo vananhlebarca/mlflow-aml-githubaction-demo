@@ -94,7 +94,7 @@ model_image.wait_for_creation(show_output=True)
 # Using the Azure ML SDK, deploy the Container Image for the trained MLflow model to ACI.
 
 
-dev_webservice_name = "iris-model"
+dev_webservice_name = "iris-aci"
 dev_webservice_deployment_config = AciWebservice.deploy_configuration()
 dev_webservice = Webservice.deploy_from_image(
     name=dev_webservice_name, image=model_image, deployment_config=dev_webservice_deployment_config, workspace=ws)
