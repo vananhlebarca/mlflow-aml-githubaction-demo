@@ -42,6 +42,9 @@ Add this JSON output as [a secret](https://help.github.com/en/actions/configurin
 
 #### Other secrets need to be configured in GitHub repos are related to Azure ML workspace as below:
 LOCATION
+
 RESOURCE_GROUP
+
 SUBSCRIPTION_ID
+
 WORKSPACE_NAME
