@@ -39,3 +39,9 @@ This will generate the following JSON output:
 ```
 
 Add this JSON output as [a secret](https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets) with the name `AZURE_CREDENTIALS` in your GitHub repository
+
+#### Other secrets need to be configured in GitHub repos are related to Azure ML workspace as below:
+LOCATION
+RESOURCE_GROUP
+SUBSCRIPTION_ID
+WORKSPACE_NAME
